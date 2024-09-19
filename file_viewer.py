@@ -173,7 +173,7 @@ class FileViewerApp(ctk.CTk):
             self.file_listbox.delete(0, tk.END)
         
         """Get a list of .docx, .pdf, and .txt files in the specified directory."""
-        valid_extensions = {'.docx', '.pdf', '.txt'}
+        valid_extensions = {'.docx', '.pdf', '.txt', '.PDF', '.DOCX', '.TXT'}
         file_list = [f for f in os.listdir(new_path) if os.path.isfile(os.path.join(new_path, f)) and os.path.splitext(f)[1] in valid_extensions]
         
         self.file_listbox.insert("end", *file_list)
@@ -194,17 +194,17 @@ class FileViewerApp(ctk.CTk):
                     file_path = os.path.join(self.current_folder_path, selection)
                 #print(f"file: {file_path}")
                 try:
-                    if selection.endswith(".pdf"):
+                    if selection.endswith(".pdf") or selection.endswith(".PDF"):
                         self.content_text.configure(state="normal")
                         self.content_text.delete("0.0", "end")  # delete all text
                         self.content_text.configure(state="disabled")
                         os.startfile(file_path)
                         return
-                    elif selection.endswith(".docx"):
+                    elif selection.endswith(".docx") or selection.endswith(".DOCX"):
                         import docx
                         doc = docx.Document(file_path)
                         content = "\n".join([paragraph.text for paragraph in doc.paragraphs])
-                    elif selection.endswith(".txt"):
+                    elif selection.endswith(".txt") or selection.endswith(".TXT"):
                         with open(file_path, "r", encoding="utf-8") as f:
                             content = f.read()
                     self.content_text.configure(state="normal")
