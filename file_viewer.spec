@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['c:\\Users\\Admin\\Desktop\\hello_app\\file_viewer.py'],
+    ['file_viewer.py'],
     pathex=[],
     binaries=[],
     datas=[('c:\\Users\\Admin\\Desktop\\hello_app\\.venv\\Lib\\site-packages/customtkinter', 'customtkinter/')],
