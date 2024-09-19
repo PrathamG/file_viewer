@@ -12,7 +12,7 @@ class FileViewerApp(ctk.CTk):
         self.geometry("1200x500")
 
         # Specify the default parent folder path here
-        self.parent_folder_path = "C:/Users/Admin/Desktop/Mock_EPR_File/"  # Replace with your desired path
+        self.parent_folder_path = "C:/Users/Admin/Desktop/Mock_EPS_File/"  # Replace with your desired path
         self.path_tree = []
 
         # Create frames for the folder list, file list, and content display
@@ -124,7 +124,7 @@ class FileViewerApp(ctk.CTk):
 
     def select_home_directory(self):
         """Allows the user to select a new home directory."""
-        selected_directory = tk.filedialog.askdirectory(initialdir=self.current_folder_path)
+        selected_directory = tk.filedialog.askdirectory()
         if selected_directory:
             self.path_tree.clear()
             self.parent_folder_path = selected_directory
