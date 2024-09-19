@@ -116,10 +116,11 @@ class FileViewerApp(ctk.CTk):
 
             self.folder_listbox.insert(tk.END, *subdir_list)
             self.file_flag_path = None
-            print(f"dir: {new_folder_path}")
+            #print(f"dir: {new_folder_path}")
         else:
             self.file_flag_path = new_folder_path
-            print(f"dir: {self.file_flag_path}")
+            
+            #print(f"dir: {self.file_flag_path}")
 
 
     def select_home_directory(self):
@@ -150,7 +151,8 @@ class FileViewerApp(ctk.CTk):
             self.folder_listbox.see(self.path_tree[-1])
             self.folder_listbox.select_set(self.path_tree[-1])
             del self.path_tree[-1]
-        
+            #print(self.path_tree)
+
     def dir_window_click_action(self, evt):
         selected_index = self.folder_listbox.curselection()
         if not selected_index:
@@ -161,8 +163,11 @@ class FileViewerApp(ctk.CTk):
         new_path = os.path.join(self.current_folder_path, selection)
         if(os.path.isdir(new_path)):
             self.update_current_folder(new_path)
-
-        self.path_tree.append(selected_index[0])
+            
+            subdir_list = [d for d in os.listdir(new_path) if os.path.isdir(os.path.join(new_path, d))]
+            if len(subdir_list) != 0 and new_path != self.parent_folder_path:
+                self.path_tree.append(selected_index[0])
+                #print(self.path_tree)
         
         if self.file_listbox.size() > 0:
             self.file_listbox.delete(0, tk.END)
@@ -211,6 +216,23 @@ class FileViewerApp(ctk.CTk):
                     self.content_text.delete("0.0", "end")
                     self.content_text.insert("0.0", f"Error: {e}")
                     self.content_text.configure(state="disabled")
+
+def create_empty_directories(base_path, num_dirs):
+    # Create the base directory if it doesn't exist
+    os.makedirs(base_path, exist_ok=True)
+
+    # Create the specified number of empty directories
+    for i in range(num_dirs):
+        dir_name = os.path.join(base_path, f'directory_{i+1}')
+        os.makedirs(dir_name, exist_ok=True)
+        print(f'Created: {dir_name}')
+
+# Set the base path and number of directories
+base_path = 'test/directory_1'
+num_dirs = 1000
+
+# Create the directories
+#create_empty_directories(base_path, num_dirs)
 
 if __name__ == "__main__":
     app = FileViewerApp()
