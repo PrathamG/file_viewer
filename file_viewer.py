@@ -136,6 +136,7 @@ class FileViewerApp(ctk.CTk):
 
         # Create a text widget to display the file content
         self.content_text = ctk.CTkTextbox(self.content_frame)
+        self.content_text.configure(font=("Segoe UI", self.fontsize + 1))
         self.content_text.grid(row=0, column=0, sticky="nsew")
 
         self.select_button = ctk.CTkButton(master=self, text="Select Directory", command=self.select_home_directory)
@@ -236,7 +237,7 @@ class FileViewerApp(ctk.CTk):
         
         self.fontsize += 1
         self.file_listbox.configure(font=("Segoe UI", self.fontsize))
-        self.content_text.configure(font=("Segoe UI", self.fontsize))
+        self.content_text.configure(font=("Segoe UI", self.fontsize + 1))
 
     def down_fontsize(self):
         if self.fontsize < 9:
@@ -244,7 +245,7 @@ class FileViewerApp(ctk.CTk):
         
         self.fontsize -= 1
         self.file_listbox.configure(font=("Segoe UI", self.fontsize))
-        self.content_text.configure(font=("Segoe UI", self.fontsize))
+        self.content_text.configure(font=("Segoe UI", self.fontsize + 1))
 
     def dir_window_click_action(self, evt):
         selected_index = self.folder_listbox.curselection()
