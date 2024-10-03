@@ -5,7 +5,7 @@ a = Analysis(
     ['file_viewer.py'],
     pathex=[],
     binaries=[],
-    datas=[('c:\\Users\\Admin\\Desktop\\hello_app\\.venv\\Lib\\site-packages/customtkinter', 'customtkinter/')],
+    datas=[('C:\\Users\\Admin\\Desktop\\hello_app\\.venv\\Lib\\site-packages\\customtkinter', 'customtkinter/')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
